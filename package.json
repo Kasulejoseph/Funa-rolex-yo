@@ -1,0 +1,25 @@
+{
+  "name": "Funa-rolex-yo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/Kasulejoseph/Funa-rolex-yo.git",
+  "author": "kasule06joseph@gmail.com",
+  "license": "MIT",
+  "private": null,
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
