@@ -1,6 +1,6 @@
 import pool from './connection'
 
-const users = () => {
+const userDB = () => {
     const createUser = 
     `
     CREATE TABLE IF NOT EXISTS users(
@@ -39,7 +39,7 @@ const dropTables = () => {
 }
 
 module.exports = {
-    users,
+    userDB,
     dropTables
 }
 
