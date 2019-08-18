@@ -9,7 +9,7 @@ const userDB = () => {
         last_name TEXT NOT NULL,
         phone_number TEXT NOT NULL,
         address TEXT NOT NULL,
-        email TEXT,
+        email TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL
     )
     `;

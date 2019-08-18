@@ -3,25 +3,30 @@ import uuidv4 from 'uuid/v4';
 
 class Auth {
     static async signUp(req, res) {
-        console.log(req.body, uuidv4());
-        
+        const {first_name, last_name, phone_number, address, email, password} = req.body
         const text = `
         INSERT INTO users(id, first_name, last_name, phone_number, address, email, password)
         VALUES($1, $2, $3, $4, $5, $6, $7) returning *
         `;
         const values = [
             uuidv4(),
-            req.body.first_name,
-            req.body.last_name,
-            req.body.phone_number,
-            req.body.address,
-            req.body.email,
-            req.body.password
+            first_name,
+            last_name,
+            phone_number,
+            address,
+            email,
+            password
         ]
         try {
             const { rows } = await db.query(text, values)
             return res.status(201).send(rows[0])
-        } catch(error) {
+        } catch(error) {              
+            if(error.routine = "_bt_check_unique") {
+                return res.status(409).send({
+                    status: 409,
+                    error: 'Email already exist'
+                })
+            }            
             return res.status(400).send(error)
         }
     }
