@@ -1,6 +1,7 @@
 import db from '../models'
 import uuidv4 from 'uuid/v4';
 import ResponseMessage from '../helpers/response';
+import generateToken from '../helpers/token'
 
 class Auth {
     static async signUp(req, res) {
@@ -52,9 +53,13 @@ class Auth {
                     ResponseMessage.responseError(404, 'Login failed, double check your login credentials')
                 )
             }
+            const token = generateToken({payload: email})
             return res.status(200).send({
                 status: 200,
-                message: 'successfully logged in'
+                message: 'successfully logged in',
+                data: {
+                    token: token
+                }
             })
             
         } catch (error) {
