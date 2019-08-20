@@ -18,6 +18,12 @@ app.post('/api/v1/auth/users', AuthValidator.signUp, Auth.signUp).all((req, res)
         error: 'Method not around on this route'
     })
 })
+app.post('/api/v1/auth/login', AuthValidator.logIn, Auth.logIn).all((req, res) => {
+    res.status(405).send({
+        status: 405,
+        error: 'Method not around on this route'
+    })
+})
 
 app.use('*', (req, res) => {
     res.status(404).send({
