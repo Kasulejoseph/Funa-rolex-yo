@@ -1,4 +1,6 @@
 class AllQueries {
+    /* TO DO*/
+    // Add is_supplier
     static createUser() {
         return `
         CREATE TABLE IF NOT EXISTS users(
@@ -15,6 +17,8 @@ class AllQueries {
     static dropTable() {
         return `DROP TABLE IF EXISTS users`
     }
+    /* TO DO*/
+    // Add status active, images
 
     static rolexTable() {
         return `

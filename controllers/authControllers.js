@@ -1,7 +1,7 @@
 import db from '../models'
 import uuidv4 from 'uuid/v4';
 import ResponseMessage from '../helpers/response';
-import generateToken from '../helpers/token'
+import AuthToken from '../helpers/token'
 import AllQueries from '../models/query'
 
 
@@ -50,8 +50,10 @@ class Auth {
                 return res.status(404).send(
                     ResponseMessage.responseError(404, 'Login failed, double check your login credentials')
                 )
-            }
-            const token = generateToken({payload: email})
+            }            
+            const token = AuthToken.generateToken({
+                payload: {email: email, id: rows[0].id}
+            })
             return res.status(200).send({
                 status: 200,
                 message: 'successfully logged in',
