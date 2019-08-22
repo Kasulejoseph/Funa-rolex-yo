@@ -8,7 +8,7 @@
   "private": null,
   "scripts": {
     "start": "nodemon --exec babel-node server.js",
-    "start:con": "nodemon --exec babel-node models/auth.js userDB",
+    "start:con": "nodemon --exec babel-node models/auth.js default createTables",
     "build": "babel server.js --out-dir build"
   },
   "devDependencies": {
