@@ -1,6 +1,5 @@
 import pool from './connection'
 import AllQueries from './query'
-import RolexDB from './rolex'
 
 const userDB = () => {    
     return pool.query(AllQueries.createUser()).then(

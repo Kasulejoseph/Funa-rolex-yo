@@ -2,14 +2,12 @@ import db from '../models'
 import uuidv4 from 'uuid/v4';
 import ResponseMessage from '../helpers/response';
 import generateToken from '../helpers/token'
+import AllQueries from '../models/query'
+
 
 class Auth {
     static async signUp(req, res) {
         const {first_name, last_name, phone_number, address, email, password} = req.body
-        const text = `
-        INSERT INTO users(id, first_name, last_name, phone_number, address, email, password)
-        VALUES($1, $2, $3, $4, $5, $6, $7) returning *
-        `;
         const values = [
             uuidv4(),
             first_name,
@@ -20,7 +18,7 @@ class Auth {
             password
         ]
         try {
-            const { rows } = await db.query(text, values)
+            const { rows } = await db.query(AllQueries.insertUser(), values)
             return res.status(201).send({
                 status: 201,
                 message: 'successfully created',

@@ -30,6 +30,18 @@ class AllQueries {
         )
         `
     }
+    static insertRolex() {
+        return `
+        INSERT INTO rolex(id, supplier_id, name, components, price, quantity, Description)
+        VALUES($1, $2, $3, $4, $5, $6, $7) returning *
+        `;
+    }
+    static insertUser() {
+        return `
+        INSERT INTO users(id, first_name, last_name, phone_number, address, email, password)
+        VALUES($1, $2, $3, $4, $5, $6, $7) returning *
+        `;
+    }
 }
 
 export default AllQueries
