@@ -1,6 +1,8 @@
 import express from 'express'
 import Auth from './controllers/authControllers'
+import Rolex from './controllers/rolexController'
 import AuthValidator from './middlewares/authMiddleware'
+import RolexValidator from './middlewares/rolexMiddleware'
 const port = process.env.PORT || 3000
 const app = express()
 // app.use(express.urlencoded({ extended: false }));
@@ -13,6 +15,13 @@ app.get('/', (req, res) => {
     })
 })
 app.post('/api/v1/auth/users', AuthValidator.signUp, Auth.signUp).all((req, res) => {
+    res.status(405).send({
+        status: 405,
+        error: 'Method not around on this route'
+    })
+})
+
+app.post('/api/v1/rolex', RolexValidator.validateInputs,  Rolex.addRolex).all((req, res) => {
     res.status(405).send({
         status: 405,
         error: 'Method not around on this route'

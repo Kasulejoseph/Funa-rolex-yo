@@ -1,20 +1,9 @@
 import pool from './connection'
+import AllQueries from './query'
+import RolexDB from './rolex'
 
-const userDB = () => {
-    const createUser = 
-    `
-    CREATE TABLE IF NOT EXISTS users(
-        id UUID PRIMARY KEY,
-        first_name TEXT NOT NULL,
-        last_name TEXT NOT NULL,
-        phone_number TEXT NOT NULL,
-        address TEXT NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
-    )
-    `;
-
-    pool.query(createUser).then(
+const userDB = () => {    
+    return pool.query(AllQueries.createUser()).then(
         (res) => {
             console.log(res);
             pool.end()   
@@ -27,8 +16,7 @@ const userDB = () => {
 }
 
 const dropTables = () => {
-    const queryText = 'DROP TABLE IF EXISTS users';
-    pool.query(queryText)
+    pool.query(AllQueries.dropTable())
         .then((res) => {
             console.log(res);
             pool.end()  
@@ -38,9 +26,21 @@ const dropTables = () => {
         })
 }
 
-module.exports = {
-    userDB,
-    dropTables
+const createRolex =() => {
+    return pool.query(AllQueries.rolexTable()).then((res)=> {
+        console.log(res);
+        pool.end()
+    }).catch((error) => {
+        console.log(error);
+        pool.end();
+        
+    })
 }
+const createTables = () => {
+    // RolexDB.createRolex;
+    userDB()
+}
+
+export default  createRolex
 
 require('make-runnable')
