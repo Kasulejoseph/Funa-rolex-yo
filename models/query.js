@@ -34,6 +34,18 @@ class AllQueries {
         )
         `
     }
+    static updateRorelex() {
+        return `
+        UPDATE rolex SET 
+        name = $1,
+        components = $2,
+        price = $3,
+        quantity = $4,
+        Description = $5,
+        modified_date = $6
+        WHERE id = $7 AND supplier_id = $8 returning *
+        `;
+    }
     static insertRolex() {
         return `
         INSERT INTO rolex(id, supplier_id, name, components, price, quantity, Description)
