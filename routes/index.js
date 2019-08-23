@@ -20,17 +20,20 @@ routers.post('/auth/users', AuthValidator.signUp, Auth.signUp).all((req, res) =>
     })
 })
 
-routers.post('/rolex', ValidToken.verifyToken, RolexValidator.validateInputs,  Rolex.addRolex).all((req, res) => {
-    res.status(405).send({
-        status: 405,
-        error: 'Method not around on this route'
-    })
-})
 routers.post('/auth/login', AuthValidator.logIn, Auth.logIn).all((req, res) => {
     res.status(405).send({
         status: 405,
         error: 'Method not around on this route'
     })
 })
+
+routers.post('/rolex', ValidToken.verifyToken, RolexValidator.validateInputs,  Rolex.addRolex).all((req, res) => {
+    res.status(405).send({
+        status: 405,
+        error: 'Method not around on this route'
+    })
+})
+
+routers.patch('/rolex/:id', ValidToken.verifyToken, Rolex.updateRolex)
 
 export default routers

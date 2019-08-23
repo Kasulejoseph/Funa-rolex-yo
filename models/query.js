@@ -18,7 +18,7 @@ class AllQueries {
         return `DROP TABLE IF EXISTS users`
     }
     /* TO DO*/
-    // Add status active, images
+    // Add status active, images, modified_date
 
     static rolexTable() {
         return `
@@ -41,9 +41,8 @@ class AllQueries {
         components = $2,
         price = $3,
         quantity = $4,
-        Description = $5,
-        modified_date = $6
-        WHERE id = $7 AND supplier_id = $8 returning *
+        Description = $5
+        WHERE id = $6 AND supplier_id = $7 returning *
         `;
     }
     static insertRolex() {
