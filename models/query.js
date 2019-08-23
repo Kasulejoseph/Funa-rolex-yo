@@ -18,7 +18,7 @@ class AllQueries {
         return `DROP TABLE IF EXISTS users`
     }
     /* TO DO*/
-    // Add status active, images
+    // Add status active, images, modified_date
 
     static rolexTable() {
         return `
@@ -33,6 +33,17 @@ class AllQueries {
             FOREIGN KEY(supplier_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
         )
         `
+    }
+    static updateRorelex() {
+        return `
+        UPDATE rolex SET 
+        name = $1,
+        components = $2,
+        price = $3,
+        quantity = $4,
+        Description = $5
+        WHERE id = $6 AND supplier_id = $7 returning *
+        `;
     }
     static insertRolex() {
         return `

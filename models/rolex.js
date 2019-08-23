@@ -12,6 +12,15 @@ class RolexDB {
             
         })
     }
+    updateRolex() {
+        return pool.query(AllQueries.updateRorelex()).then((res) => {
+            console.log(res);
+            pool.end()
+        }).catch((error) => {
+            console.log(error);
+            pool.end();
+        })
+    }
 }
 
 export default RolexDB
